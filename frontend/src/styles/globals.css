@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-main, #F8F8FC);
+    color: var(--text-primary, #1C1C1E);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+:root {
+  --bg-main: #F8F8FC;
+  --bg-card: white;
+  --text-primary: #1C1C1E;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --border-color: #F3F4F6;
+  --bg-input: #F3F4F6;
+  --bg-disabled: #E5E7EB;
+}
+
+html.dark {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #334155;
+  --bg-input: #334155;
+  --bg-disabled: #475569;
+  color-scheme: dark;
+}
+/* ── Tokens de acessibilidade ─────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Focus visível — WCAG 2.1 critério 2.4.7 */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white;
+  }
+
+  /* Reduz movimento para usuários que preferem */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-surface-50 text-surface-900 font-sans antialiased;
+  }
+
+  /* Garante contraste mínimo de 4.5:1 em textos */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-surface-900;
+  }
+}
+
+@layer components {
+  /* Classe utilitária para leitores de tela */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
